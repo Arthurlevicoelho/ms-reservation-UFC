@@ -5,6 +5,7 @@ import com.arthurlevi.msuser.dtos.UserRecordDto;
 import com.arthurlevi.msuser.exceptions.UserPrincipalNotFoundException;
 import com.arthurlevi.msuser.models.UserModel;
 import com.arthurlevi.msuser.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -25,13 +26,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Retorna um usuário por ID")
     public ResponseEntity<UserModel> findUserById(@PathVariable UUID id ){
-
         var user = userService.findById(id);
 
         return ResponseEntity.ok(user);
     }
     @GetMapping("/")
+    @Operation(summary = "Retorna todos os usuários")
     public ResponseEntity<List<UserModel>> findAll() {
 
         List<UserModel> usersList = this.userService.findAll();
@@ -39,12 +41,14 @@ public class UserController {
     }
 
     @GetMapping("/registration/{registration}")
+    @Operation(summary = "Retorna um usuário pelo número de matrícula")
     public ResponseEntity<UserModel> findByUserByRegistration(@PathVariable Integer registration)throws UserPrincipalNotFoundException {
 
         return ResponseEntity.ok().body(userService.findByRegistration(registration));
     }
 
     @PostMapping("/create")
+    @Operation(summary = "Cria um novo usuário")
     public ResponseEntity created(@RequestBody @Valid UserRecordDto userRecordDto){
         var userModel = new UserModel();
         BeanUtils.copyProperties(userRecordDto,userModel);
@@ -52,7 +56,9 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userModel);
     }
+
     @PutMapping(value = "/{id}")
+    @Operation(summary = "Atualiza um usuário existente")
     public ResponseEntity<Void> updateUser(@RequestBody @Valid UserRecordDto userRecordDto, @PathVariable UUID id) {
 
         var userModel = new UserModel();
@@ -63,10 +69,9 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/{id}")
+    @Operation(summary = "Remove um usuário por ID")
     public ResponseEntity<Void> deleteUser(@PathVariable UUID id){
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
