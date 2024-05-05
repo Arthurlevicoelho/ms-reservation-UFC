@@ -56,8 +56,8 @@ class UserServiceTest {
 
         when(repository.findById(userId)).thenReturn(Optional.of(user));
 
-        assertNotEquals(userId,UUID.randomUUID());
-        //assertThrows(UserPrincipalNotFoundException.class,() -> userService.findById(UUID.randomUUID()));
+        //assertNotEquals(userId,UUID.randomUUID());
+        assertThrows(UserPrincipalNotFoundException.class,() -> userService.findById(UUID.randomUUID()));
     }
 
     @Test
