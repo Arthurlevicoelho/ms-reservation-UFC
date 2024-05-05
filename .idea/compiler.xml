@@ -11,9 +11,11 @@
         <module name="ms-room" />
         <module name="ms-user" />
         <module name="ms-reservations" />
-        <module name="ms-gateway" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ms-gateway" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
