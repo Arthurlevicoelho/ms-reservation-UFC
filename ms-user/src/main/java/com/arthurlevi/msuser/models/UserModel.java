@@ -1,6 +1,7 @@
 package com.arthurlevi.msuser.models;
 
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,8 +14,13 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @Column(unique = true)
     private String email;
+
     private String password;
+
+    @Column(unique = true)
     private Integer registration;
 
     public UserModel(){}
