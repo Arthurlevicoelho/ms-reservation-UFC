@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_ROOMS")
+@Table(schema = "TB_ROOMS")
 public class RoomModel implements Serializable {
 
     @Id
