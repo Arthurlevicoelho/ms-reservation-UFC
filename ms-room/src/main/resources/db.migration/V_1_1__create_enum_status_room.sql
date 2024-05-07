@@ -1,0 +1,1 @@
+CREATE TYPE status_room_enum AS ENUM ('AVAILABLE', 'NOT_AVAILABLE');
