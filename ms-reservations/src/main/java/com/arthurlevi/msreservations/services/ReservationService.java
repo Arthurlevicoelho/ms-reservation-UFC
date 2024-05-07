@@ -11,9 +11,9 @@ import com.arthurlevi.msreservations.feignclients.RoomFeignClient;
 import com.arthurlevi.msreservations.feignclients.UserFeignClient;
 import com.arthurlevi.msreservations.models.ReservationModel;
 import com.arthurlevi.msreservations.repostories.ReservationRepository;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +24,9 @@ import java.util.UUID;
 @Service
 public class ReservationService {
 
-    private static Logger logger = LoggerFactory.getLogger(ReservationService.class);
-
-    public static final String RESERVATION_ROOM ="reservationRoom";
+//    private static Logger logger = LoggerFactory.getLogger(ReservationService.class);
+//
+//    public static final String RESERVATION_ROOM ="reservationRoom";
     final ReservationRepository reservationRepository;
 
     @Autowired
@@ -34,9 +34,16 @@ public class ReservationService {
 
     @Autowired
     private RoomFeignClient roomFeignClient;
+
+    public ReservationService(ReservationRepository reservationRepository, UserFeignClient userFeignClient, RoomFeignClient roomFeignClient) {
+        this.reservationRepository = reservationRepository;
+        this.userFeignClient = userFeignClient;
+
+        this.roomFeignClient = roomFeignClient;
+    }
+
     public ReservationService(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
-
     }
 
     public List<ReservationModel> findAll() {
@@ -70,15 +77,15 @@ public class ReservationService {
     }
 
  //   @CircuitBreaker(name = RESERVATION_ROOM, fallbackMethod = "alternativeMethod")
-    public ReservationModel validationUserAndRoom(ReservationModel reservation){
+    public void validationUserAndRoom(ReservationModel reservation){
 
         UserDto userDto = userFeignClient.findUserById(reservation.getIdUser()).getBody();
         RoomDto roomDto = roomFeignClient.findRoomById(reservation.getIdRoom()).getBody();
 
 
-        if(userDto != null && roomDto != null){
-            return reservation;
-        }else throw new UserOrRoomNotFoundException();
+        if(userDto == null || roomDto == null){
+            throw new UserOrRoomNotFoundException();
+        }
 
     }
 
