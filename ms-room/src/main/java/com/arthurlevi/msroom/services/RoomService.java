@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
-public class RoomService {
+public class    RoomService {
 
     final RoomRepository roomRepository;
 
