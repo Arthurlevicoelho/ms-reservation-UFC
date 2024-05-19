@@ -10,8 +10,8 @@
         <module name="ms-eureka-server" />
         <module name="ms-room" />
         <module name="ms-user" />
-        <module name="ms-reservations" />
         <module name="ms-gateway" />
+        <module name="ms-reservation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,7 +23,7 @@
       <module name="ms-config-server" options="-parameters" />
       <module name="ms-eureka-server" options="-parameters" />
       <module name="ms-gateway" options="-parameters" />
-      <module name="ms-reservations" options="-parameters" />
+      <module name="ms-reservation" options="-parameters" />
       <module name="ms-room" options="-parameters" />
       <module name="ms-user" options="-parameters" />
       <module name="ms-user (1)" options="-parameters" />
