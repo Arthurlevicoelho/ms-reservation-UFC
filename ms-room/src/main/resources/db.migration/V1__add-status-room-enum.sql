@@ -1,0 +1,1 @@
+CREATE TYPE room.status_room_enum AS ENUM ('AVAILABLE', 'NOT_AVAILABLE')

@@ -1,7 +1,0 @@
-CREATE TABLE TB_ROOMS (
-    id UUID PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    number INTEGER NOT NULL,
-    capacity INTEGER NOT NULL,
-    statusRoom VARCHAR(255)
-);

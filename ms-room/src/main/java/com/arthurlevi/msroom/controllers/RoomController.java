@@ -44,16 +44,13 @@ public class RoomController {
 
     @PostMapping("/created")
     @Operation(summary = "Cria uma nova sala")
+    public ResponseEntity<RoomModel> created(@RequestBody @Valid RoomModel room){
 
-    public ResponseEntity<RoomModel> created(@RequestBody @Valid RoomRecordDto room){
-        var roomModel = new RoomModel();
+        room.setStatusRoom(StatusRoom.AVAILABLE);
 
-        BeanUtils.copyProperties(room, roomModel);
-        roomModel.setStatusRoom(StatusRoom.AVAILABLE);
+        room = roomService.created(room);
 
-        roomModel = roomService.created(roomModel);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(roomModel);
+        return ResponseEntity.status(HttpStatus.CREATED).body(room);
     }
 
     @PutMapping(value = "/{id}")

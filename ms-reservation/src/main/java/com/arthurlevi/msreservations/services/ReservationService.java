@@ -42,9 +42,6 @@ public class ReservationService {
         this.roomFeignClient = roomFeignClient;
     }
 
-    public ReservationService(ReservationRepository reservationRepository) {
-        this.reservationRepository = reservationRepository;
-    }
 
     public List<ReservationModel> findAll() {
         return reservationRepository.findAll();

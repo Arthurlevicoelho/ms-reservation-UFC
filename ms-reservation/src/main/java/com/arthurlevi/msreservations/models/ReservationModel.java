@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_RESERVATION")
+@Table(schema = "room",name = "tb_reservation")
 public class ReservationModel {
 
     @Id
@@ -22,6 +22,7 @@ public class ReservationModel {
     private LocalDateTime endAt;
 
     private UUID idRoom;
+
     private UUID idUser;
 
     public ReservationModel(){}

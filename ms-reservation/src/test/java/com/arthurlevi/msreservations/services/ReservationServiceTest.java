@@ -33,7 +33,7 @@ class ReservationServiceTest {
     @BeforeEach
     void setup(){
         MockitoAnnotations.openMocks(this);
-        reservationService = new ReservationService(reservationRepository);
+//        reservationService = new ReservationService(reservationRepository);
     }
 
     @Test

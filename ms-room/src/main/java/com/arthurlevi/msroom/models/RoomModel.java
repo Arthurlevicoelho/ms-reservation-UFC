@@ -2,22 +2,29 @@ package com.arthurlevi.msroom.models;
 
 import com.arthurlevi.msroom.enums.StatusRoom;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(schema = "TB_ROOMS")
-public class RoomModel implements Serializable {
+@Table(schema = "room",name = "rooms")
+public class RoomModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @NotBlank(message = "Name nao pode ser nulo")
     private String name;
-
+    @NotNull(message = "Number not null")
     private Integer number;
+    @NotNull(message = "Capacity not null")
     private Integer capacity;
+
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "room.status_room_enum")
     private StatusRoom statusRoom;
 
     public RoomModel(){}
